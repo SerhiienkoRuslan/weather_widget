@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { forecastWeatherAPI } from "../api/api";
+import { getForecastWeather } from "../api/api";
 import { ForecastDayType } from "../types/types";
 import { AppStateType, InferActionsTypes } from "./NewStore";
 import { ThunkAction } from "redux-thunk";
@@ -72,7 +72,7 @@ export const getForecastWeatherInfo =
   async (dispatch, getState) => {
     try {
       dispatch(toggleIsFetching(true));
-      let response = await forecastWeatherAPI.getForecastWeather(cityName);
+      let response = await getForecastWeather(cityName);
       dispatch(toggleIsFetching(false));
       dispatch(forecastSlice.actions.setForecastWeather(response.data));
     } catch (error: any) {

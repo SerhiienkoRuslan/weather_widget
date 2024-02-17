@@ -1,4 +1,4 @@
-import { currentWeatherAPI } from "../api/api";
+import { getCurrentWeather } from "../api/api";
 import { AppStateType, InferActionsTypes } from "./store";
 import { ThunkAction } from "redux-thunk";
 import { CurrentWeatherDataType, ErrorType } from "../types/types";
@@ -106,7 +106,7 @@ export const getCurrentWeatherInfo =
   async (dispatch, getState) => {
     try {
       dispatch(actions.toggleIsFething(true));
-      let response = await currentWeatherAPI.getCurrentWeather(cityName);
+      let response = await getCurrentWeather(cityName);
       dispatch(actions.toggleIsFething(false));
       dispatch(actions.setCurrentWeather(response.data));
     } catch (error: any) {
