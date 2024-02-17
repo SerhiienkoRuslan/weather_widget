@@ -1,29 +1,36 @@
-import React from "react";
-import "./App.css";
-import { Header } from "./components/Header/Header";
-import AppRoutes from "./AppRoutes";
-import { useSelector } from "react-redux";
-import { AppStateType } from "./store/NewStore";
+import React, { FC, useContext } from 'react'
 
-const App = React.memo(() => {
-  const theme = useSelector((state: AppStateType) => state.general.theme);
+import { GlobalContext, GlobalProvider } from './context/global'
+
+import AppRoutes from './routes/routes'
+import './App.css'
+
+const App = () => {
+  const { theme } = useContext(GlobalContext)
 
   const addThemeLight = (className: string) => {
-    const themeClassLight = theme ? " light" : "";
+    const themeClassLight = theme ? ' light' : ''
 
-    return className + themeClassLight;
-  };
+    return className + themeClassLight
+  }
 
   return (
-    <div className={addThemeLight("app")}>
-      <div className={addThemeLight("app-wrapper")}>
-        <Header />
-        <div className={addThemeLight("infoWeather")}>
+    <div className={addThemeLight('app')}>
+      <div className={addThemeLight('app-wrapper')}>
+        <div className={addThemeLight('infoWeather')}>
           <AppRoutes />
         </div>
       </div>
     </div>
-  );
-});
+  )
+}
 
-export default App;
+const AppWrapper: FC = () => {
+  return (
+    <GlobalProvider>
+      <App />
+    </GlobalProvider>
+  )
+}
+
+export default AppWrapper
