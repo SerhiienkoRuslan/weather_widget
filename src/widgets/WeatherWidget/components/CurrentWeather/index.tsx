@@ -40,8 +40,8 @@ const CurrentWeather: FC = () => {
               <div className={addTheme(style.titleName)}>Temperature</div>
               <div className={style.infotext}>
                 {isCelsius
-                  ? (currentWeather?.current?.temp_c || '') + ' ' + temperature.celsius
-                  : (currentWeather?.current?.temp_f || '') + ' ' + temperature.fahrenheit}
+                  ? (currentWeather?.current?.temp_c ?? '') + ' ' + temperature.celsius
+                  : (currentWeather?.current?.temp_f ?? '') + ' ' + temperature.fahrenheit}
               </div>
             </div>
 
@@ -49,8 +49,8 @@ const CurrentWeather: FC = () => {
               <div className={addTheme(style.titleName)}>Feels like</div>
               <div className={style.infotext}>
                 {isCelsius
-                  ? (currentWeather?.current?.feelslike_c || '') + ' ' + temperature.celsius
-                  : (currentWeather?.current?.feelslike_f || '') + ' ' + temperature.fahrenheit}
+                  ? (currentWeather?.current?.feelslike_c ?? '') + ' ' + temperature.celsius
+                  : (currentWeather?.current?.feelslike_f ?? '') + ' ' + temperature.fahrenheit}
               </div>
             </div>
           </div>
