@@ -37,7 +37,6 @@ const { Provider } = WidgetContext
 
 export const WidgetProvider: FC<Props> = ({ children }) => {
   const { latitude, longitude } = useGeolocation()
-  console.log(latitude, longitude)
 
   const [isCurrentWeather, setIsCurrentWeather] = useState(defaultContextValues.isCurrentWeather)
   const [isFetching, setIsFetching] = useState(defaultContextValues.isFetching)
@@ -46,14 +45,22 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
   const [currentWeather, setCurrentWeather] = useState(defaultContextValues.currentWeather)
 
   const handleFetchCurrentWeather = useCallback(async () => {
-    setIsFetching(true)
+    if (isFetching) {
+      return
+    }
+
     try {
+      setIsFetching(true)
       const response = await getForecastWeather(weatherFormData.cityName)
 
       if (response?.data) {
         setCurrentWeather({
           ...response.data,
         })
+
+        if (Array.isArray(weatherFormData.cityName)) {
+          setWeatherFormData((prev) => ({ ...prev, cityName: response?.data?.location?.name }))
+        }
       }
     } catch (error: any) {
       setErrorMessage(error?.response?.data?.error || '')
@@ -82,8 +89,9 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!!latitude || !!longitude) {
-      // TODO:
-      // updateCityNameCoordinates([latitude, longitude])
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setWeatherFormData((prev) => ({ ...prev, cityName: [latitude, longitude] }))
     }
   }, [latitude, longitude])
 
