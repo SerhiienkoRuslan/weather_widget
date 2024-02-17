@@ -120,6 +120,7 @@ export type ForecastDayType = {
 export type ContextType = {
   isCurrentWeather: boolean
   setIsCurrentWeather: (value: boolean) => void
+  handleToggleWeatherPage: () => void
   isFetching: boolean
   setIsFetching: (value: boolean) => void
   errorMessage: string

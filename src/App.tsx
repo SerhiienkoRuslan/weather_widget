@@ -17,9 +17,7 @@ const App = () => {
   return (
     <div className={addThemeLight('app')}>
       <div className={addThemeLight('app-wrapper')}>
-        <div className={addThemeLight('infoWeather')}>
-          <AppRoutes />
-        </div>
+        <AppRoutes />
       </div>
     </div>
   )

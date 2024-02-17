@@ -25,6 +25,7 @@ const defaultContextValues = {
 export const WidgetContext = createContext<ContextType>({
   isCurrentWeather: defaultContextValues.isCurrentWeather,
   setIsCurrentWeather: () => undefined,
+  handleToggleWeatherPage: () => undefined,
   isFetching: defaultContextValues.isFetching,
   setIsFetching: () => undefined,
   errorMessage: defaultContextValues.errorMessage,
@@ -72,6 +73,8 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
     }
   }, [weatherFormData.cityName])
 
+  const handleToggleWeatherPage = () => setIsCurrentWeather((prev) => !prev)
+
   useEffect(() => {
     if (errorMessage) {
       toast.error(errorMessage, {
@@ -109,6 +112,7 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
     setWeatherFormData,
     currentWeather,
     isCelsius,
+    handleToggleWeatherPage,
   }
 
   return (

@@ -47,24 +47,8 @@ body {
   margin: auto;
 }
 
-.infoWeather {
-  margin: 0;
-  padding: 20px;
-  background-color: rgba(53, 53, 53, 0.653);
-  border-radius: 5px;
-}
-
-.infoWeather.light {
-  background-color: #fff;
-}
-
 @media (max-width: 450px) {
   *::-webkit-scrollbar {
     display: none;
-  }
-
-  .infoWeather {
-    margin: 0;
-    padding: 20px 0;
   }
 }

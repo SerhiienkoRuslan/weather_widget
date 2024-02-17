@@ -3,21 +3,15 @@ import React, { FC, useContext } from 'react'
 import useTheme from '../../../../hooks/useTheme'
 
 import { WidgetContext } from '../../context'
-import style from './CurrentWeather.module.css'
 import { temperature } from '../../constants'
+import style from './styles.module.css'
 
 const CurrentWeather: FC = () => {
   const { addTheme } = useTheme(style.light)
-  const { currentWeather, setIsCurrentWeather, isCelsius } = useContext(WidgetContext)
-
-  const handleChangePage = () => setIsCurrentWeather(false)
+  const { currentWeather, isCelsius } = useContext(WidgetContext)
 
   return (
     <>
-      <button type='button' className={addTheme(style.navlink)} onClick={handleChangePage}>
-        {'< 14-day forecast'}
-      </button>
-
       <div className={style.info}>
         <div className={style.infoCity}>
           <h2 className={style.locationName}>{currentWeather?.location?.name || ''}</h2>

@@ -10,7 +10,7 @@ import style from '../styles.module.css'
 
 const WeatherForm: FC = () => {
   const { addTheme } = useTheme(style.light)
-  const { weatherFormData, setWeatherFormData } = useContext(WidgetContext)
+  const { weatherFormData, setWeatherFormData, isFetching } = useContext(WidgetContext)
 
   return (
     <Formik
@@ -45,7 +45,7 @@ const WeatherForm: FC = () => {
             </div>
 
             <div className={style.buttonFindItem}>
-              <button className={addTheme(style.buttonFind)} type='submit'>
+              <button className={addTheme(style.buttonFind)} type='submit' disabled={isFetching}>
                 Find
               </button>
             </div>
