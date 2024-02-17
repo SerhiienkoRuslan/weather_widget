@@ -19,6 +19,7 @@ const defaultContextValues = {
     temperatureType: temperature.celsius as keyof typeof temperature,
   },
   currentWeather: undefined,
+  isCelsius: true,
 }
 
 export const WidgetContext = createContext<ContextType>({
@@ -31,6 +32,7 @@ export const WidgetContext = createContext<ContextType>({
   weatherFormData: defaultContextValues.weatherFormData,
   setWeatherFormData: () => undefined,
   currentWeather: defaultContextValues.currentWeather,
+  isCelsius: defaultContextValues.isCelsius,
 })
 
 const { Provider } = WidgetContext
@@ -43,6 +45,7 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
   const [errorMessage, setErrorMessage] = useState(defaultContextValues.errorMessage)
   const [weatherFormData, setWeatherFormData] = useState(defaultContextValues.weatherFormData)
   const [currentWeather, setCurrentWeather] = useState(defaultContextValues.currentWeather)
+  const isCelsius = weatherFormData.temperatureType === temperature.celsius
 
   const handleFetchCurrentWeather = useCallback(async () => {
     if (isFetching) {
@@ -105,6 +108,7 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
     weatherFormData,
     setWeatherFormData,
     currentWeather,
+    isCelsius,
   }
 
   return (

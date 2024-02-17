@@ -4,7 +4,6 @@ import useTheme from '../../../../hooks/useTheme'
 
 import { WidgetContext } from '../../context'
 import { ForecastDayType } from '../../types'
-import { temperature } from '../../constants'
 
 import ForecastDay from './ForecastDay'
 import WeatherDay from './WeatherDay'
@@ -12,7 +11,7 @@ import style from './styles.module.css'
 
 const ForecastWeather: FC = () => {
   const { addTheme } = useTheme(style.light)
-  const { currentWeather, weatherFormData, setIsCurrentWeather } = useContext(WidgetContext)
+  const { currentWeather, setIsCurrentWeather, isCelsius } = useContext(WidgetContext)
   const [day, setDay] = useState('')
   const [active, setActive] = useState(false)
 
@@ -59,7 +58,7 @@ const ForecastWeather: FC = () => {
               onSelect={() => {
                 handleClickOnSelect(fd)
               }}
-              tempType={weatherFormData.temperatureType === temperature.celsius}
+              tempType={isCelsius}
               active={day === fd.date && active}
             />
           ))}
@@ -67,14 +66,7 @@ const ForecastWeather: FC = () => {
 
         <div className={style.carrousel}>
           <article className={style.card}>
-            {active &&
-              currentDay.map((cd) => (
-                <WeatherDay
-                  infoDay={cd.hour}
-                  key={cd.date}
-                  tempType={weatherFormData.temperatureType === temperature.celsius}
-                />
-              ))}
+            {active && currentDay.map((cd) => <WeatherDay infoDay={cd.hour} key={cd.date} tempType={isCelsius} />)}
           </article>
         </div>
 

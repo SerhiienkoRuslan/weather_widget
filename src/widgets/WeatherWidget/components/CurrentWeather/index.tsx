@@ -8,8 +8,7 @@ import { temperature } from '../../constants'
 
 const CurrentWeather: FC = () => {
   const { addTheme } = useTheme(style.light)
-  const { currentWeather, weatherFormData, setIsCurrentWeather } = useContext(WidgetContext)
-  const isCelsius = weatherFormData.temperatureType === temperature.celsius
+  const { currentWeather, setIsCurrentWeather, isCelsius } = useContext(WidgetContext)
 
   const handleChangePage = () => setIsCurrentWeather(false)
 

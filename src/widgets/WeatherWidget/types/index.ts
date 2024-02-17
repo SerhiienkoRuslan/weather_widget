@@ -136,4 +136,5 @@ export type ContextType = {
     temperatureType: keyof typeof temperature
   }) => void
   currentWeather?: WeatherData
+  isCelsius: boolean
 }
