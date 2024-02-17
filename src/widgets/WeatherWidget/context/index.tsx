@@ -2,7 +2,7 @@ import React, { createContext, FC, ReactElement, useEffect, useState, useCallbac
 import toast, { Toaster } from 'react-hot-toast'
 import useGeolocation from 'react-hook-geolocation'
 
-import { getCurrentWeather, getForecastWeather } from '../api'
+import { getForecastWeather } from '../api'
 import { ContextType } from '../types'
 import { temperature } from '../constants'
 
@@ -15,7 +15,7 @@ const defaultContextValues = {
   isFetching: false,
   errorMessage: '',
   weatherFormData: {
-    cityName: '',
+    cityName: 'London',
     temperatureType: temperature.celsius as keyof typeof temperature,
   },
   currentWeather: undefined,
@@ -37,6 +37,7 @@ const { Provider } = WidgetContext
 
 export const WidgetProvider: FC<Props> = ({ children }) => {
   const { latitude, longitude } = useGeolocation()
+  console.log(latitude, longitude)
 
   const [isCurrentWeather, setIsCurrentWeather] = useState(defaultContextValues.isCurrentWeather)
   const [isFetching, setIsFetching] = useState(defaultContextValues.isFetching)
@@ -47,27 +48,13 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
   const handleFetchCurrentWeather = useCallback(async () => {
     setIsFetching(true)
     try {
-      const [cWeather, fWeather] = await Promise.all([
-        getCurrentWeather(weatherFormData.cityName),
-        getForecastWeather(weatherFormData.cityName),
-      ])
+      const response = await getForecastWeather(weatherFormData.cityName)
 
-      if (!cWeather?.data) {
-        cWeather.data = {}
+      if (response?.data) {
+        setCurrentWeather({
+          ...response.data,
+        })
       }
-
-      if (!fWeather?.data?.forecast) {
-        fWeather.data = {
-          forecast: {},
-        }
-      }
-
-      setCurrentWeather({
-        ...cWeather.data,
-        forecast: {
-          ...fWeather.data.forecast,
-        },
-      })
     } catch (error: any) {
       setErrorMessage(error?.response?.data?.error || '')
     } finally {
