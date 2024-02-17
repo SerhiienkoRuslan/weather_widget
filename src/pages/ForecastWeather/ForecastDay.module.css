@@ -1,0 +1,160 @@
+.forecastDay {
+  margin: 0 0 10px 0;
+  width: 300px;
+  background-color: rgba(51, 51, 51, 0.653);
+  border: 1px solid rgba(51, 51, 51, 0.653);
+  border-radius: 10px;
+}
+
+.forecastDay.active {
+  box-shadow: 4px 4px 5px rgb(28, 28, 28);
+}
+
+.forecastDayItem.light {
+  background-color: #e5e5e5;
+  border: 0.1px solid rgba(51, 51, 51, 0.653);
+  border-radius: 10px;
+}
+
+.forecastDate {
+  margin: 10px auto;
+  padding: 10px 0;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: rgba(44, 44, 44, 0.596);
+  border-radius: 5px;
+  width: 200px;
+}
+
+.forecastDate.light {
+  background-color: rgba(173, 171, 171, 0.685);
+}
+
+.forecastItem {
+  display: flex;
+  justify-content: center;
+  margin: 5px auto;
+  padding: 3px 0;
+}
+
+.forecastTitle {
+  margin: 0 5px 0 0;
+  color: rgba(255, 255, 255, 0.744);
+}
+
+.forecastTitle.light {
+  color: #24262cd4;
+}
+
+.forecastText {
+  font-weight: 600;
+}
+
+.forecastMaxTemp {
+  background-color: rgba(202, 77, 77, 0.596);
+  border-radius: 5px;
+  width: 120px;
+}
+
+.forecastMaxTemp.light {
+  background-color: rgba(202, 77, 77, 0.785);
+}
+
+.forecastMinTemp {
+  background-color: rgba(77, 117, 202, 0.596);
+  border-radius: 5px;
+  width: 120px;
+}
+
+.forecastMinTemp.light {
+  background-color: rgba(77, 117, 202, 0.785);
+}
+
+.chanceOfRain,
+.sunrise,
+.sunset {
+  background-color: rgba(62, 62, 62, 0.596);
+  border-radius: 5px;
+  width: 200px;
+}
+
+.chanceOfRain.light,
+.sunrise.light,
+.sunset.light {
+  background-color: rgba(173, 171, 171, 0.685);
+}
+
+.buttonDetails {
+  margin: 10px 0 10px 0;
+}
+
+.buttonDetails button {
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 0 20px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(37, 37, 37);
+  border: 1px solid white;
+  opacity: 0.6;
+  box-shadow: 4px 4px 2px rgb(28, 28, 28);
+}
+
+.buttonDetails.light button {
+  opacity: 0.7;
+  border: 1px solid rgb(52, 52, 52);
+}
+
+.buttonDetails button:is(:hover) {
+  opacity: 1;
+  cursor: pointer;
+  box-shadow: 0.1px 0.1px 5px 1px rgb(155, 155, 155);
+}
+
+.buttonDetails.light button:is(:hover) {
+  box-shadow: 0.1px 0.1px 5px 1px rgb(30, 30, 30);
+}
+
+@media (max-width: 450px) {
+  .forecastDay {
+    margin: 0 0 20px 10px;
+    width: 350px;
+    height: fit-content;
+  }
+
+  .forecastDay.active {
+    box-shadow: 7px 7px 15px rgb(28, 28, 28);
+  }
+
+  .forecastDate {
+    width: 90%;
+    font-size: 30px;
+    margin: 20px auto;
+    padding: 10px 0;
+  }
+
+  .forecastMaxTemp,
+  .forecastMinTemp {
+    width: 80%;
+    font-size: 30px;
+    margin: 10px auto;
+    padding: 10px 0;
+  }
+
+  .chanceOfRain,
+  .sunrise,
+  .sunset {
+    width: 80%;
+    font-size: 20px;
+    margin: 10px auto;
+    padding: 10px 0;
+  }
+
+  .buttonDetails button {
+    width: 40%;
+    height: 50px;
+    font-size: 30px;
+    margin: 20px auto;
+  }
+}

@@ -1,0 +1,119 @@
+.weatherDay {
+  display: grid;
+  grid-auto-flow: column;
+  scroll-behavior: auto;
+  gap: 1.2rem;
+  overflow-y: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.hourDayInfo {
+  margin: 10px 0 10px 0;
+  padding: 0 20px 5px 20px;
+  width: 220px;
+  border-radius: 10px;
+  background-color: rgba(51, 51, 51, 0.653);
+  box-sizing: border-box;
+}
+
+.hourDayInfo.light {
+  background-color: #e5e5e5;
+}
+
+.hourTime {
+  margin: 10px -10px;
+  padding: 5px 0;
+  font-weight: 600;
+  font-size: 15px;
+  background-color: rgba(44, 44, 44, 0.596);
+  border-radius: 5px;
+}
+
+.hourTime.light {
+  background-color: rgba(173, 171, 171, 0.685);
+}
+
+.hourIcon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 5px auto;
+  gap: 8px;
+  background-color: rgba(62, 62, 62, 0.596);
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.hourIcon.light {
+  background-color: rgba(173, 171, 171, 0.685);
+}
+
+.hourIcon img {
+  width: 30px;
+  height: 35px;
+  object-fit: cover;
+}
+
+.hourItem {
+  display: flex;
+  justify-content: center;
+  background-color: rgba(62, 62, 62, 0.596);
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 5px auto;
+}
+
+.hourItem.light {
+  background-color: rgba(173, 171, 171, 0.685);
+}
+
+.hourTitle {
+  margin: 0 5px 0 0;
+  color: rgba(255, 255, 255, 0.744);
+}
+
+.hourTitle.light {
+  color: #24262cd4;
+}
+
+.hourText {
+  font-weight: 600;
+}
+
+@media (max-width: 450px) {
+  .hourDayInfo {
+    width: 350px;
+    margin: 0 0 20px 10px;
+  }
+
+  .hourTime {
+    width: 90%;
+    height: fit-content;
+    font-size: 30px;
+    margin: 20px auto;
+    padding: 10px 0;
+  }
+
+  .hourIcon {
+    width: 80%;
+    height: fit-content;
+    font-size: 20px;
+    padding: 0;
+  }
+
+  .hourIcon img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hourItem {
+    width: 80%;
+    height: fit-content;
+    font-size: 20px;
+    margin: 10px auto;
+    padding: 10px 0;
+  }
+}
