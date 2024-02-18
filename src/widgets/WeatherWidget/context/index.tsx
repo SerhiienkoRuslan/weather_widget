@@ -1,6 +1,6 @@
 import React, { createContext, FC, ReactElement, useEffect, useState, useCallback } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
-// import useGeolocation from 'react-hook-geolocation'
+import useGeolocation from 'react-hook-geolocation'
 
 import { getForecastWeather } from '../api'
 import { ContextType } from '../types'
@@ -39,14 +39,14 @@ export const WidgetContext = createContext<ContextType>({
 const { Provider } = WidgetContext
 
 export const WidgetProvider: FC<Props> = ({ children }) => {
-  // const { latitude, longitude } = useGeolocation()
+  const { latitude, longitude } = useGeolocation()
 
   const [isCurrentWeather, setIsCurrentWeather] = useState(defaultContextValues.isCurrentWeather)
   const [isFetching, setIsFetching] = useState(defaultContextValues.isFetching)
   const [errorMessage, setErrorMessage] = useState(defaultContextValues.errorMessage)
   const [weatherFormData, setWeatherFormData] = useState(defaultContextValues.weatherFormData)
   const [currentWeather, setCurrentWeather] = useState(defaultContextValues.currentWeather)
-  // const [geolocation, setGeolocation] = useState<number[]>([])
+  const [isGeolocationFetched, setIsGeolocationFetched] = useState(false)
   const isCelsius = weatherFormData.temperatureType === temperature.celsius
 
   const handleFetchCurrentWeather = useCallback(async () => {
@@ -94,15 +94,14 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
     }
   }, [weatherFormData.cityName])
 
-  // TODO: geolocation works wierd
-  // useEffect(() => {
-  //   if (!!latitude && !!longitude && geolocation[0] !== latitude && geolocation[1] !== longitude) {
-  //     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //     // @ts-ignore
-  //     setWeatherFormData((prev) => ({ ...prev, cityName: [latitude, longitude] }))
-  //     setGeolocation([latitude, longitude])
-  //   }
-  // }, [latitude, longitude])
+  useEffect(() => {
+    if (!!latitude && !!longitude && !isGeolocationFetched) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setWeatherFormData((prev) => ({ ...prev, cityName: [latitude, longitude] }))
+      setIsGeolocationFetched(true)
+    }
+  }, [latitude, longitude])
 
   const providerValue = {
     setIsCurrentWeather,
