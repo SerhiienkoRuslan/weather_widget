@@ -18,6 +18,7 @@ const ForecastWeather: FC = () => {
 
   const handleClickOnSelect = (fd: ForecastDayType) => {
     setDay(fd.date)
+
     if (day !== fd.date && !active) {
       setActive(true)
     } else if (day === fd.date) {
