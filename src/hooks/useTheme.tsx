@@ -1,16 +1,16 @@
-import { useSelector } from "react-redux";
-import { AppStateType } from "../store/NewStore";
+import { useContext } from 'react'
+import { GlobalContext } from '../context/global'
 
-const useTheme = (light: string) => {
-  const theme = useSelector((state: AppStateType) => state.general.theme);
+const useTheme: any = (light: string) => {
+  const { theme } = useContext(GlobalContext)
 
   const addTheme = (className: string) => {
-    const themeClass = theme ? ` ${light}` : "";
+    const themeClass = theme ? ` ${light}` : ''
 
-    return className + themeClass;
-  };
+    return className + themeClass
+  }
 
-  return { addTheme };
-};
+  return { addTheme }
+}
 
-export default useTheme;
+export default useTheme

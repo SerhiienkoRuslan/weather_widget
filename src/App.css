@@ -27,6 +27,7 @@ body {
 }
 
 .app {
+  display: flex;
   width: 100%;
   min-height: 100vh;
   height: 100%;
@@ -43,27 +44,11 @@ body {
 .app-wrapper {
   text-align: center;
   max-width: 1200px;
-  margin: 0 auto;
-}
-
-.infoWeather {
-  margin: 10px 0 10px 0;
-  padding: 20px;
-  background-color: rgba(53, 53, 53, 0.653);
-  border-radius: 5px;
-}
-
-.infoWeather.light {
-  background-color: #fff;
+  margin: auto;
 }
 
 @media (max-width: 450px) {
   *::-webkit-scrollbar {
     display: none;
-  }
-
-  .infoWeather {
-    margin: 0;
-    padding: 20px 0;
   }
 }

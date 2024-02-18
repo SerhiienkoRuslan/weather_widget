@@ -1,0 +1,58 @@
+.infoWeather {
+  margin: 0;
+  padding: 20px;
+  background-color: rgba(53, 53, 53, 0.653);
+  border-radius: 5px;
+  position: relative;
+}
+
+.infoWeather.light {
+  background-color: #fff;
+}
+
+.infoWeatherContainer {
+  margin-top: 10px;
+}
+
+.navlink {
+  display: inline-block;
+  padding: 5px;
+  margin: 0 0 30px 0;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.639);
+  background-color: rgba(51, 51, 51, 0.653);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 4px 4px 5px rgb(28, 28, 28);
+}
+
+.navlink.light {
+  border: 1px solid rgb(51, 51, 51);
+  background-color: rgba(173, 171, 171, 0.685);
+  color: #24262c
+}
+
+.navlink:hover {
+  color: #fff;
+  background-color: #345678b9;
+  box-shadow: 0.1px 0.1px 5px 1px rgb(155, 155, 155);
+}
+
+.navlink.light:hover {
+  box-shadow: 0.1px 0.1px 5px 1px rgb(18, 18, 18);
+}
+
+@media (max-width: 450px) {
+  .infoWeather {
+    margin: 0;
+    padding: 20px 0;
+  }
+
+  .navlink {
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    padding: 10px 0 0 0;
+    margin: 0;
+  }
+}
