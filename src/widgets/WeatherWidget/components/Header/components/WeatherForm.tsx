@@ -34,7 +34,7 @@ const WeatherForm: FC = () => {
               </div>
 
               <div className={style.tempOptionItem}>
-                <Field as='select' name='temperatureType'>
+                <Field as='select' name='temperatureType' className={addTheme(style.tempOption)}>
                   {Object.values(temperature).map((value) => (
                     <option value={value} key={value}>
                       {value}
