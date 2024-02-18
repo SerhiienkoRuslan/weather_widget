@@ -50,27 +50,27 @@ const CurrentWeather: FC = () => {
         </div>
 
         <div className={style.infoWeather}>
-          <div className={addTheme(`${style.currentCloud} ${style.infoWeatherItem}`)}>
+          <div className={addTheme(style.infoWeatherItem)}>
             <div className={addTheme(style.titleName)}>Cloud cover</div>
             <div className={style.infotext}>{(currentWeather?.current?.cloud || '') + ' %'}</div>
           </div>
 
-          <div className={addTheme(`${style.currentPrecipitation} ${style.infoWeatherItem}`)}>
+          <div className={addTheme(style.infoWeatherItem)}>
             <div className={addTheme(style.titleName)}>Precipitation</div>
             <div className={style.infotext}>{(currentWeather?.current?.precip_mm || '') + ' mm'}</div>
           </div>
 
-          <div className={addTheme(`${style.currentHumidity} ${style.infoWeatherItem}`)}>
+          <div className={addTheme(style.infoWeatherItem)}>
             <div className={addTheme(style.titleName)}>Humidity</div>
             <div className={style.infotext}>{(currentWeather?.current?.humidity || '') + ' %'}</div>
           </div>
 
-          <div className={addTheme(`${style.currentWind} ${style.infoWeatherItem}`)}>
+          <div className={addTheme(style.infoWeatherItem)}>
             <div className={addTheme(style.titleName)}>Wind speed</div>
             <div className={style.infotext}>{(currentWeather?.current?.wind_kph || '') + ' Km/h'}</div>
           </div>
 
-          <div className={addTheme(`${style.currentPressure} ${style.infoWeatherItem}`)}>
+          <div className={addTheme(style.infoWeatherItem)}>
             <div className={addTheme(style.titleName)}>Pressure</div>
             <div className={style.infotext}>{(currentWeather?.current?.pressure_mb || '') + ' hPa'}</div>
           </div>
