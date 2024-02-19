@@ -59,6 +59,8 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
       const response = await getForecastWeather(weatherFormData.cityName)
 
       if (response?.data) {
+        console.log('isFetching :>> ', isFetching)
+
         setCurrentWeather({
           ...response.data,
         })

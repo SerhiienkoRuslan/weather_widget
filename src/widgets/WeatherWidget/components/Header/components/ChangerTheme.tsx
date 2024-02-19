@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react'
+import { FC, useContext } from 'react'
 
 import { GlobalContext } from '../../../../../context/global'
 
@@ -9,12 +9,12 @@ import Moon from '../../../../../assets/moon.svg'
 import Sun from '../../../../../assets/sun.svg'
 
 const ChangerTheme: FC = () => {
-  const { theme, setTheme } = useContext(GlobalContext)
+  const { changeTheme } = useContext(GlobalContext)
 
   const { addTheme } = useTheme(styles.light)
 
-  const handleChange = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    setTheme(!theme)
+  const handleChange = () => {
+    changeTheme()
   }
 
   return (
