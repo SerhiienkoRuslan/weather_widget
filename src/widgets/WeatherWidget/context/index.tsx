@@ -49,27 +49,30 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
   const [isGeolocationFetched, setIsGeolocationFetched] = useState(false)
   const isCelsius = weatherFormData.temperatureType === temperature.celsius
 
-  const handleFetchCurrentWeather = useCallback(async (cityName?: string[]) => {
-    if (isFetching) {
-      return
-    }
-
-    try {
-      setIsFetching(true)
-      const response = await getForecastWeather(cityName || weatherFormData.cityName)
-
-      if (response?.data) {
-        setCurrentWeather({
-          ...response.data,
-        })
-        setWeatherFormData((prev) => ({ ...prev, cityName: response?.data?.location?.name }))
+  const handleFetchCurrentWeather = useCallback(
+    async (cityName?: string[]) => {
+      if (isFetching) {
+        return
       }
-    } catch (error: any) {
-      setErrorMessage(error?.response?.data?.error || '')
-    } finally {
-      setIsFetching(false)
-    }
-  }, [weatherFormData.cityName])
+
+      try {
+        setIsFetching(true)
+        const response = await getForecastWeather(cityName || weatherFormData.cityName)
+
+        if (response?.data) {
+          setCurrentWeather({
+            ...response.data,
+          })
+          setWeatherFormData((prev) => ({ ...prev, cityName: response?.data?.location?.name }))
+        }
+      } catch (error: any) {
+        setErrorMessage(error?.response?.data?.error || '')
+      } finally {
+        setIsFetching(false)
+      }
+    },
+    [weatherFormData.cityName]
+  )
 
   const handleToggleWeatherPage = () => setIsCurrentWeather((prev) => !prev)
 
