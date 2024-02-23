@@ -31,7 +31,7 @@ module.exports = {
   rules: {
     'camelcase': 'off',
     'curly': 'error',
-    'linebreak-style': ['error', 'unix'],
+    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     'newline-before-return': 'error',
     'no-else-return': 'error',
     'no-param-reassign': 'error',

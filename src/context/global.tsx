@@ -7,7 +7,7 @@ type Props = {
 type ContextType = {
   // TODO: should be string
   theme: boolean
-  setTheme: (value: boolean) => void
+  changeTheme: () => void
 }
 
 const defaultContextValues = {
@@ -16,7 +16,7 @@ const defaultContextValues = {
 
 export const GlobalContext = createContext<ContextType>({
   theme: defaultContextValues.theme,
-  setTheme: () => undefined,
+  changeTheme: () => undefined,
 })
 
 const { Provider } = GlobalContext
@@ -24,9 +24,13 @@ const { Provider } = GlobalContext
 export const GlobalProvider: FC<Props> = ({ children }) => {
   const [theme, setTheme] = useState(defaultContextValues.theme)
 
+  const changeTheme = () => {
+    setTheme((prev) => !prev)
+  }
+
   const providerValue = {
     theme,
-    setTheme,
+    changeTheme,
   }
 
   return <Provider value={providerValue}>{children}</Provider>

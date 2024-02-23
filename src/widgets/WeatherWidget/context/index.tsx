@@ -96,8 +96,6 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!!latitude && !!longitude && !isGeolocationFetched) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       setIsGeolocationFetched(true)
       handleFetchCurrentWeather([latitude, longitude])
     }
