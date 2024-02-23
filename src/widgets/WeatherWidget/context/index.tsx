@@ -50,7 +50,7 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
   const isCelsius = weatherFormData.temperatureType === temperature.celsius
 
   const handleFetchCurrentWeather = useCallback(
-    async (cityName?: string[]) => {
+    async (cityName?: number[]) => {
       if (isFetching) {
         return
       }
