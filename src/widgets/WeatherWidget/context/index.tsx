@@ -49,32 +49,31 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
   const [isGeolocationFetched, setIsGeolocationFetched] = useState(false)
   const isCelsius = weatherFormData.temperatureType === temperature.celsius
 
-  const handleFetchCurrentWeather = useCallback(async () => {
-    if (isFetching) {
-      return
-    }
+  const handleFetchCurrentWeather = useCallback(
+    async (cityName?: number[]) => {
+      if (isFetching) {
+        return
+      }
 
-    try {
-      setIsFetching(true)
-      const response = await getForecastWeather(weatherFormData.cityName)
+      try {
+        setIsFetching(true)
 
-      if (response?.data) {
-        console.log('isFetching :>> ', isFetching)
+        const response = await getForecastWeather(cityName || weatherFormData.cityName)
 
-        setCurrentWeather({
-          ...response.data,
-        })
-
-        if (Array.isArray(weatherFormData.cityName)) {
+        if (response?.data) {
+          setCurrentWeather({
+            ...response.data,
+          })
           setWeatherFormData((prev) => ({ ...prev, cityName: response?.data?.location?.name }))
         }
+      } catch (error: any) {
+        setErrorMessage(error?.response?.data?.error || '')
+      } finally {
+        setIsFetching(false)
       }
-    } catch (error: any) {
-      setErrorMessage(error?.response?.data?.error || '')
-    } finally {
-      setIsFetching(false)
-    }
-  }, [weatherFormData.cityName])
+    },
+    [weatherFormData.cityName]
+  )
 
   const handleToggleWeatherPage = () => setIsCurrentWeather((prev) => !prev)
 
@@ -98,10 +97,8 @@ export const WidgetProvider: FC<Props> = ({ children }) => {
 
   useEffect(() => {
     if (!!latitude && !!longitude && !isGeolocationFetched) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      setWeatherFormData((prev) => ({ ...prev, cityName: [latitude, longitude] }))
       setIsGeolocationFetched(true)
+      handleFetchCurrentWeather([latitude, longitude])
     }
   }, [latitude, longitude])
 
